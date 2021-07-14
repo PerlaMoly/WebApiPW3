@@ -25,7 +25,6 @@ namespace claseServicio.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [Route("Buscar")]
         public ResponsePedidos Buscar([FromBody] PedidosRequest request)
         {
