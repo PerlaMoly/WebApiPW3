@@ -1,20 +1,13 @@
-﻿
-using claseServicio.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿using claseServicio.Models;
 using claseServicio.Servicios;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using System.Text;
-using System;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace claseServicio.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    // [Route("api/v1/[controller]")]
     public class AuthController : ControllerBase
     {
         private readonly _20211CTPContext _dBcontext;
@@ -34,10 +27,9 @@ namespace claseServicio.Controllers
 
         }
 
-    
-
-
         [HttpPost]
+        [AllowAnonymous]
+        [Route("api/v1/[controller]/Login")]
         public ResponseUsuario Login(Usuario user)
         {
             _loginServicio.Ingresar(user.Email, user.Password, out Usuario usuarioSalida);
@@ -55,5 +47,15 @@ namespace claseServicio.Controllers
             }
             return _responseUsuario;
         }
+
+
+        [HttpPost]
+        [Authorize]
+        [Route("api/v1/[controller]/Logout")]
+        public object Logout(int idUsuario)
+        {
+            return "{ }";
+        }
+
     }
 }
