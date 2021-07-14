@@ -28,7 +28,7 @@ namespace claseServicio.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-T8Q8T2L;Database=2021-1C-TP;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-KJ93ABG\\SQLEXPRESS;Database=2021-1C-TP;Trusted_Connection=True;");
                 //optionsBuilder.UseSqlServer("Server=127.0.0.1,1433;Database=2021-1C-TP;User=sa;Password=qwertY12@3;");
             }
         }
