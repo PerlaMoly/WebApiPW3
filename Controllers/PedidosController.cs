@@ -33,7 +33,6 @@ namespace claseServicio.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
         [Route("Guardar")]
         public string Guardar(string user, string password)
         {
