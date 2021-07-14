@@ -27,8 +27,9 @@ namespace claseServicio.Servicios
             response.items = _dBcontext.Pedidos
                 .Where(p => p.IdCliente == IdCliente && p.IdEstado == IdEstado)
                 .Select(p => new PedidosDTO {
-                    IdCliente = p.IdCliente,
                     IdPedido = p.IdPedido,
+                    IdCliente = p.IdCliente,
+                    Estado = p.IdEstadoNavigation.Descripcion,
                     FechaModificacion = p.FechaModificacion,
                     ModificadoPor = new ModificadoPorDTO {
                         Email = p.ModificadoPorNavigation.Email,
@@ -48,11 +49,7 @@ namespace claseServicio.Servicios
 
             response.count = _dBcontext.Pedidos
                 .Where(p => p.IdCliente == IdCliente && p.IdEstado == IdEstado)
-                .Select(p => new PedidosDTO
-                {
-                    IdCliente = p.IdCliente,
-                    IdPedido = p.IdPedido,
-                }).Count();
+                .Count();
 
             return response;
         }
