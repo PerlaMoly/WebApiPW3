@@ -25,6 +25,7 @@ namespace claseServicio.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("Buscar")]
         public ResponsePedidos Buscar([FromBody] PedidosRequest request)
         {
@@ -33,6 +34,7 @@ namespace claseServicio.Controllers
 
 
         [HttpPost]
+        [Authorize]
         [Route("Guardar")]
         public string Guardar(string user, string password)
         {

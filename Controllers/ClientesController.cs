@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace claseServicio.Controllers
@@ -21,6 +22,7 @@ namespace claseServicio.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public int Get()
         {
             return 1;
@@ -28,6 +30,7 @@ namespace claseServicio.Controllers
 
 
         [HttpPost]
+        [Authorize]
         public string Filtrar(string user, string password)
         {
             return "1";          
