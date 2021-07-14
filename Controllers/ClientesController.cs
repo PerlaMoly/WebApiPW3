@@ -1,10 +1,10 @@
 ﻿using claseServicio.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using claseServicio.Requests;
 
 namespace claseServicio.Controllers
 {
@@ -14,10 +14,11 @@ namespace claseServicio.Controllers
     {
 
         private readonly _20211CTPContext _dbContext;
+ 
 
         public ClientesController(_20211CTPContext dbContext)
         {
-            _dbContext = dbContext;
+             _dbContext = new _20211CTPContext();
         }
 
         [HttpGet]
