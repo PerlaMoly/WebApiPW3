@@ -7,6 +7,8 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using claseServicio.Models;
 
 namespace claseServicio
 {
@@ -22,6 +24,7 @@ namespace claseServicio
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<_20211CTPContext>(options => options.UseSqlServer(Configuration.GetConnectionString("_20211CTPContext2")));
             services.AddSession();
             var key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("SecretKey"));
 
