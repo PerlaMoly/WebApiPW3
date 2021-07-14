@@ -1,5 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using claseServicio.Models;
+using claseServicio.Servicios;
+using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+using claseServicio.Requests;
 
 namespace claseServicio.Controllers
 {
@@ -7,27 +12,28 @@ namespace claseServicio.Controllers
     [Route("api/v1/[controller]")]
     public class PedidosController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
+        private readonly _20211CTPContext _dBcontext;
+        private PedidosServicio _pedidosServicio;
+        private readonly IConfiguration _configuration;
+
+        public PedidosController(IConfiguration config)
         {
-
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        private readonly ILogger<PedidosController> _logger;
-
-        public PedidosController(ILogger<PedidosController> logger)
-        {
-            _logger = logger;
+            //_dBcontext = dBcontext;
+            _configuration = config;
+            _dBcontext = new _20211CTPContext();
+            _pedidosServicio = new PedidosServicio(_dBcontext);
         }
 
-        [HttpGet]
-        public int Buscar()
+        [HttpPost]
+        [Route("Buscar")]
+        public ResponsePedidos Buscar([FromBody] PedidosRequest request)
         {
-            return 1;
+            return _pedidosServicio.Buscar(request.IdCliente, request.IdEstado);
         }
 
 
         [HttpPost]
+        [Route("Guardar")]
         public string Guardar(string user, string password)
         {
             return "1";          
